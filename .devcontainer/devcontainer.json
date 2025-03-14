@@ -5,17 +5,21 @@
     "runArgs": [
         "--gpus", "all"
     ],
-    "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-    },
     "mounts": [
         "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
     ],
     "remoteUser": "root",
     "postCreateCommand": "conda init bash && source ~/.bashrc && conda activate dev",
     "forwardPorts": [8888],
-    "extensions": [
-        "ms-python.python",
-        "ms-toolsai.jupyter"
-    ]
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ]
+        }
+    }
 }
