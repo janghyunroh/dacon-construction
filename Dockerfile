@@ -12,8 +12,9 @@ RUN apt-get update && apt-get install -y \
 # Miniconda 설치 (Anaconda를 원하면 변경 가능)
 ENV CONDA_DIR=/opt/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
+    && rm -rf $CONDA_DIR \
     && mkdir -p $CONDA_DIR \
-    && bash /tmp/miniconda.sh -b -p $CONDA_DIR \
+    && bash /tmp/miniconda.sh -b -u -p $CONDA_DIR \
     && rm /tmp/miniconda.sh
 ENV PATH=$CONDA_DIR/bin:$PATH
 
@@ -27,5 +28,6 @@ WORKDIR /workspace
 # Jupyter Notebook 포트 노출
 EXPOSE 8888
 
-# 컨테이너 실행 시 Jupyter Notebook 시작
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
+# 컨테이너 실행 시 터미널 시작
+CMD ["/bin/bash"]
+
